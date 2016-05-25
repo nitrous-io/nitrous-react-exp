@@ -11,7 +11,7 @@ const SRC_DIR = path.resolve(__dirname, 'src'),
       DEST_DIR = path.join(BUILD_DIR, APP_ENV);
 
 const config = {
-  entry: path.join(APP_DIR, 'index.jsx'),
+  entry: path.join(APP_DIR, 'main.js'),
   output: {
     path: path.join(DEST_DIR, 'assets'),
     filename: 'bundle.js'
