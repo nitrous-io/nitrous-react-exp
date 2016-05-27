@@ -2,20 +2,16 @@ import './NitrousIDE.sass';
 import React from 'react';
 import MainMenu from './MainMenu';
 import Sidebar from './Sidebar';
-import TabbedPane from './TabbedPane';
+import PaneContainer from '../containers/PaneContainer';
 
-const klass = class NitrousIDE extends React.Component {
-  render() {
-    return (
-      <div className='NitrousIDE'>
-        <MainMenu />
-        <main>
-          <Sidebar />
-          <TabbedPane className='root-pane' />
-        </main>
-      </div>
-    );
-  }
-};
+const NitrousIDE = () => (
+  <div className='NitrousIDE'>
+    <MainMenu />
+    <main>
+      <Sidebar />
+      <PaneContainer paneID='0' />
+    </main>
+  </div>
+);
 
-export default klass;
+export default NitrousIDE;
