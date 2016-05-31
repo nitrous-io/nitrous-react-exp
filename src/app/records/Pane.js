@@ -1,9 +1,10 @@
 import {Record} from 'immutable';
 
 const Pane = Record({
-  tabIDs: [],
-  leftPaneID: null,
-  rightPaneID: null,
+  tabIDs: null,
+  parentID: null,
+  leftChildID: null,
+  rightChildID: null,
   vertical: false
 });
 

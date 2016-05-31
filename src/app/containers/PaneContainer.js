@@ -16,6 +16,10 @@ const mapDispatchToProps = function(dispatch, ownProps) {
 
     onClickSplitVertically() {
       dispatch(paneActions.splitVertically(ownProps.paneID));
+    },
+
+    onClickUnsplit() {
+      dispatch(paneActions.unsplit(ownProps.paneID));
     }
   };
 };

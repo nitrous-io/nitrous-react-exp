@@ -9,17 +9,18 @@ import classNames from 'classnames';
 const PaneView = ({
   pane,
   onClickSplitHorizontally,
-  onClickSplitVertically
+  onClickSplitVertically,
+  onClickUnsplit
 }) => {
   return (
     <div className={classNames('PaneView', { vertical: pane.vertical })}>
-      {pane.leftPaneID ? (
-        <PaneContainer paneID={pane.leftPaneID} />
+      {pane.leftChildID ? (
+        <PaneContainer paneID={pane.leftChildID} />
       ) : ''}
-      {pane.rightPaneID ? (
-        <PaneContainer paneID={pane.rightPaneID} />
+      {pane.rightChildID ? (
+        <PaneContainer paneID={pane.rightChildID} />
       ) : ''}
-      {!pane.leftPaneID && !pane.rightPaneID ? (
+      {!pane.leftChildID && !pane.rightChildID ? (
         <div>
           {pane.tabs !== null ? (
             <TabBar />
@@ -27,6 +28,7 @@ const PaneView = ({
           <ButtonToolbar>
             <Button onClick={onClickSplitHorizontally}>Split Horizontally</Button>
             <Button onClick={onClickSplitVertically}>Split Vertically</Button>
+            <Button onClick={onClickUnsplit}>Unsplit</Button>
           </ButtonToolbar>
         </div>
       ) : ''}
@@ -37,7 +39,8 @@ const PaneView = ({
 PaneView.propTypes = {
   pane: PropTypes.instanceOf(Pane).isRequired,
   onClickSplitHorizontally: PropTypes.func.isRequired,
-  onClickSplitVertically: PropTypes.func.isRequired
+  onClickSplitVertically: PropTypes.func.isRequired,
+  onClickUnsplit: PropTypes.func.isRequired
 };
 
 export default PaneView;
