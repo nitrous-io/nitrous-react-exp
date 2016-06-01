@@ -1,15 +1,16 @@
-import {Map} from 'immutable';
-import Pane from '../records/Pane';
+import {List} from 'immutable';
+import Pane, {nextPaneID} from '../records/Pane';
 import {SPLIT_HORIZONTALLY, SPLIT_VERTICALLY, UNSPLIT} from '../actions/paneActions';
 
-let _nextID = 0;
-const nextID = function() {
-  return (++_nextID).toString();
-};
+let _nextTabListID = 0;
 
-const moveTabs = function(state, sourcePaneID, targetPaneID) {
-  const sourcePane = state.get(sourcePaneID),
-        targetPane = state.get(targetPaneID);
+function nextTabListID() {
+  return (++_nextTabListID).toString();
+}
+
+function moveTabs(state, sourcePaneID, targetPaneID) {
+  const sourcePane = state.getIn(['panes', sourcePaneID]),
+        targetPane = state.getIn(['panes', targetPaneID]);
 
   if (!sourcePane || !targetPane) {
     return state;
@@ -20,38 +21,47 @@ const moveTabs = function(state, sourcePaneID, targetPaneID) {
     return moveTabs(state, sourcePaneID, targetPane.leftChildID);
   }
 
-  let {tabIDs} = sourcePane;
-  const targetTabIDs = targetPane.tabIDs;
+  const sourceTabList = state.getIn(['tabLists', sourcePane.tabListID]),
+        targetTabList = state.getIn(['tabLists', targetPane.tabListID]);
 
   // if target pane already has tabs, append tabs from source pane
-  if (targetTabIDs) {
-    tabIDs = targetTabIDs.merge(tabIDs);
+  if (sourceTabList && targetTabList) {
+    state = state.mergeIn(['tabLists'], {
+      [sourcePane.tabListID]: null,
+      [targetPane.tabListID]: targetTabList.concat(sourceTabList)
+    });
   }
 
-  return state.merge({
-    [sourcePaneID]: sourcePane.merge({tabIDs: null}),
-    [targetPaneID]: targetPane.merge({tabIDs})
+  return state.mergeIn(['panes'], {
+    [sourcePaneID]: sourcePane.merge({tabListID: null}),
+    [targetPaneID]: targetPane.merge({tabListID: targetPane.tabListID})
   });
-};
+}
 
-const splitPane = function(state, action) {
+function splitPane(state, action) {
   const {paneID} = action,
-        pane = state.get(paneID);
+        pane = state.getIn(['panes', paneID]);
 
   // if pane is already split, do nothing
   if (pane.leftChildID || pane.rightChildID) {
     return state;
   }
 
-  const leftChildID = nextID(),
-        rightChildID = nextID(),
-        leftChild = new Pane({parentID: paneID}),
-        rightChild = new Pane({parentID: paneID});
+  const newTabListID = nextTabListID();
+  state = state.mergeIn(['tabLists'], {
+    [newTabListID]: new List()
+  });
 
-  state = state.merge({
+  const leftChildID = nextPaneID(),
+        rightChildID = nextPaneID(),
+        leftChild = new Pane({parentID: paneID, tabListID: pane.tabListID}),
+        rightChild = new Pane({parentID: paneID, tabListID: newTabListID});
+
+  state = state.mergeIn(['panes'], {
     [leftChildID]: leftChild,
     [rightChildID]: rightChild,
     [paneID]: pane.merge({
+      tabListID: null,
       leftChildID,
       rightChildID,
       vertical: action.type === SPLIT_VERTICALLY
@@ -59,14 +69,14 @@ const splitPane = function(state, action) {
   });
   // move tabs to left child
   return moveTabs(state, paneID, leftChildID);
-};
+}
 
-const unsplitPane = function(state, action) {
+function unsplitPane(state, action) {
   const {paneID} = action,
-        pane = state.get(paneID);
+        pane = state.getIn(['panes', paneID]);
 
   const {parentID} = pane;
-  let parent = state.get(parentID);
+  let parent = state.getIn(['panes', parentID]);
 
   // if pane has no parent (i.e. a root pane), do nothing
   if (!parent) {
@@ -86,9 +96,9 @@ const unsplitPane = function(state, action) {
   state = moveTabs(state, paneID, otherPaneID);
 
   // unsplit by making the other pane the parent pane
-  const otherPane = state.get(otherPaneID);
+  const otherPane = state.getIn(['panes', otherPaneID]);
 
-  state = state.merge({
+  state = state.mergeIn(['panes'], {
     [paneID]: null,
     [otherPaneID]: null,
     [parentID]: otherPane.merge({
@@ -100,24 +110,20 @@ const unsplitPane = function(state, action) {
   leftChildID = otherPane.leftChildID;
   rightChildID = otherPane.rightChildID;
 
-  const leftChild = state.get(leftChildID),
-        rightChild = state.get(rightChildID);
+  const leftChild = state.getIn(['panes', leftChildID]),
+        rightChild = state.getIn(['panes', rightChildID]);
 
   if (leftChild && rightChild) {
-    state = state.merge({
+    state = state.mergeIn(['panes'], {
       [leftChildID]: leftChild.merge({parentID}),
       [rightChildID]: rightChild.merge({parentID})
     });
   }
 
   return state;
-};
+}
 
-const initialState = new Map({
-  '0': new Pane()
-});
-
-const panes = function(state=initialState, action) {
+function panes(state, action) {
   switch (action.type) {
     case SPLIT_HORIZONTALLY:
     case SPLIT_VERTICALLY:
@@ -129,6 +135,6 @@ const panes = function(state=initialState, action) {
     default:
       return state;
   }
-};
+}
 
 export default panes;

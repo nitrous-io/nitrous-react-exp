@@ -1,7 +1,7 @@
 import './PaneView.sass';
 import React, {PropTypes} from 'react';
 import {Button, ButtonToolbar} from 'react-bootstrap';
-import TabBar from './TabBar';
+import TabBarContainer from '../containers/TabBarContainer';
 import Pane from '../records/Pane';
 import PaneContainer from '../containers/PaneContainer';
 import classNames from 'classnames';
@@ -22,8 +22,8 @@ const PaneView = ({
       ) : ''}
       {!pane.leftChildID && !pane.rightChildID ? (
         <div>
-          {pane.tabs !== null ? (
-            <TabBar />
+          {pane.tabListID ? (
+            <TabBarContainer tabListID={pane.tabListID} />
           ) : ''}
           <ButtonToolbar>
             <Button onClick={onClickSplitHorizontally}>Split Horizontally</Button>

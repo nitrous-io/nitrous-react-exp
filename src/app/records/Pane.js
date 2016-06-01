@@ -1,7 +1,13 @@
 import {Record} from 'immutable';
 
+let _nextID = 0;
+
+export function nextPaneID() {
+  return (++_nextID).toString();
+}
+
 const Pane = Record({
-  tabIDs: null,
+  tabListID: null,
   parentID: null,
   leftChildID: null,
   rightChildID: null,

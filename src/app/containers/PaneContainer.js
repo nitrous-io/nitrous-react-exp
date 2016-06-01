@@ -2,13 +2,13 @@ import {connect} from 'react-redux';
 import paneActions from '../actions/paneActions';
 import PaneView from '../components/PaneView';
 
-const mapStateToProps = function(state, ownProps) {
+function mapStateToProps(state, ownProps) {
   return {
-    pane: state.panes.get(ownProps.paneID)
+    pane: state.getIn(['panes', ownProps.paneID])
   };
-};
+}
 
-const mapDispatchToProps = function(dispatch, ownProps) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
     onClickSplitHorizontally() {
       dispatch(paneActions.splitHorizontally(ownProps.paneID));
@@ -22,7 +22,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
       dispatch(paneActions.unsplit(ownProps.paneID));
     }
   };
-};
+}
 
 const PaneContainer = connect(
   mapStateToProps,
