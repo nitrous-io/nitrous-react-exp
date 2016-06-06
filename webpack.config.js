@@ -8,12 +8,13 @@ const APP_ENV = process.env.APP_ENV || 'development';
 const SRC_DIR = path.resolve(__dirname, 'src'),
       BUILD_DIR = path.resolve(__dirname, 'build'),
       APP_DIR = path.join(SRC_DIR, 'app'),
-      DEST_DIR = path.join(BUILD_DIR, APP_ENV);
+      DEST_DIR = path.join(BUILD_DIR, APP_ENV),
+      ASSETS_DIR = path.join(DEST_DIR, 'assets');
 
 const config = {
   entry: path.join(APP_DIR, 'main.js'),
   output: {
-    path: path.join(DEST_DIR, 'assets'),
+    path: ASSETS_DIR,
     filename: 'bundle.js'
   },
   devtool: "source-map",
@@ -22,6 +23,10 @@ const config = {
       {
         from: path.join(SRC_DIR, 'index.html'),
         to: DEST_DIR
+      },
+      {
+        from: path.join(SRC_DIR, 'assets'),
+        to: ASSETS_DIR
       }
     ])
   ],
