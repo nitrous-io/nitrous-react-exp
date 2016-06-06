@@ -1,10 +1,12 @@
 import './Sidebar.sass';
 import React from 'react';
 
-const Sidebar = () => (
-  <div className='Sidebar'>
-    Sidebar
-  </div>
-);
+function Sidebar() {
+  return (
+    <div className='Sidebar'>
+      Sidebar
+    </div>
+  );
+}
 
 export default Sidebar;

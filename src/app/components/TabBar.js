@@ -4,25 +4,27 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import {Button} from 'react-bootstrap';
 import Tab from '../records/Tab';
 
-const TabBar = ({
+function TabBar({
   tabs,
   onClickNewTab,
   onClickCloseTab
-}) => (
-  <div className='TabBar'>
-    <ul>
-      {tabs ? tabs.map((tab, id) => (
-        <li key={`tab-${id}`}>
-          {tab.title}
-          <Button bsStyle='link' onClick={() => onClickCloseTab(id)}>
-            <i className='fa fa-times' />
-          </Button>
-        </li>
-      )).toList() : ''}
-    </ul>
-    <Button onClick={onClickNewTab}>New Tab</Button>
-  </div>
-);
+}) {
+  return (
+    <div className='TabBar'>
+      <ul>
+        {tabs ? tabs.map((tab, id) => (
+          <li key={`tab-${id}`}>
+            {tab.title}
+            <Button bsStyle='link' onClick={() => onClickCloseTab(id)}>
+              <i className='fa fa-times' />
+            </Button>
+          </li>
+        )).toList() : ''}
+      </ul>
+      <Button onClick={onClickNewTab}>New Tab</Button>
+    </div>
+  );
+}
 
 TabBar.propTypes = {
   tabs: ImmutablePropTypes.orderedMapOf(Tab).isRequired,

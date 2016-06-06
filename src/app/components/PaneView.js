@@ -6,12 +6,12 @@ import Pane from '../records/Pane';
 import PaneContainer from '../containers/PaneContainer';
 import classNames from 'classnames';
 
-const PaneView = ({
+function PaneView({
   pane,
   onClickSplitHorizontally,
   onClickSplitVertically,
   onClickUnsplit
-}) => {
+}) {
   return (
     <div className={classNames('PaneView', { vertical: pane.vertical })}>
       {pane.leftChildID ? (
@@ -34,7 +34,7 @@ const PaneView = ({
       ) : ''}
     </div>
   );
-};
+}
 
 PaneView.propTypes = {
   pane: PropTypes.instanceOf(Pane).isRequired,
