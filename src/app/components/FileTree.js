@@ -6,7 +6,6 @@ function FileTree({
   fileTreeID='0',
   fileID='0'
 }) {
-
   return (
     <div className='FileTree'>
       <ul className='tree-node-list'>
