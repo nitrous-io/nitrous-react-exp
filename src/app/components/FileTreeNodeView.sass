@@ -1,0 +1,44 @@
+.FileTreeNodeView
+  padding-left: 14px
+
+  $nameHeight: 22px
+
+  &.directory:before
+    float: left
+    content: ''
+    border: 4px solid transparent
+    border-left: 4px solid
+    margin-top: 6px
+    margin-left: -10px
+
+  .name
+    height: $nameHeight
+    line-height: $nameHeight
+    white-space: nowrap
+
+  .bar
+    position: absolute
+    width: 100%
+    height: $nameHeight
+    left: 0
+
+  .icon
+    margin-right: 5px
+    width: 16px
+    text-align: center
+
+  > .tree-node-list
+    display: none
+    padding: 0
+    margin: 0
+    list-style: none
+
+  &.expanded
+    > .tree-node-list
+      display: block
+
+    &.directory:before
+      border-left-color: transparent
+      border-top: 4px solid
+      margin-top: 8px
+      margin-left: -12px

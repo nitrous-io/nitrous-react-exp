@@ -1,10 +1,11 @@
 import './Sidebar.sass';
 import React from 'react';
+import FileTree from './FileTree';
 
 function Sidebar() {
   return (
     <div className='Sidebar'>
-      Sidebar
+      <FileTree />
     </div>
   );
 }
