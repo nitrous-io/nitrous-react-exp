@@ -11,9 +11,10 @@ export default {
     };
   },
 
-  closeTab(tabListID, tabID) {
+  closeTab(paneID, tabListID, tabID) {
     return {
       type: CLOSE_TAB,
+      paneID,
       tabListID,
       tabID
     };

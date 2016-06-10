@@ -12,13 +12,23 @@ function TabBar({
   onClickCloseTab,
   onClickTab
 }) {
+  const selectTab = (tabID) => ((e) => {
+    e.stopPropagation();
+    onClickTab(tabID);
+  });
+
+  const closeTab = (tabID) => ((e) => {
+    e.stopPropagation();
+    onClickCloseTab(tabID);
+  });
+
   return (
     <div className='TabBar'>
       <ul>
         {tabs ? tabs.map((tab, id) => (
-          <li key={`tab-${id}`} className={classNames({selected: selectedTabID === id})} onClick={() => onClickTab(id)}>
+          <li key={`tab-${id}`} className={classNames({selected: selectedTabID === id})} onClick={selectTab(id)}>
             {tab.title}
-            <Button bsStyle='link' onClick={() => onClickCloseTab(id)}>
+            <Button bsStyle='link' onClick={closeTab(id)}>
               <i className='fa fa-times' />
             </Button>
           </li>

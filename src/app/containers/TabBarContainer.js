@@ -21,7 +21,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
 
     onClickCloseTab(tabID) {
-      dispatch(tabActions.closeTab(ownProps.tabListID, tabID));
+      dispatch(tabActions.closeTab(ownProps.paneID, ownProps.tabListID, tabID));
     },
 
     onClickTab(tabID) {
