@@ -4,6 +4,7 @@ import PaneView from '../components/PaneView';
 
 function mapStateToProps(state, ownProps) {
   return {
+    paneID: ownProps.paneID,
     pane: state.getIn(['panes', ownProps.paneID])
   };
 }

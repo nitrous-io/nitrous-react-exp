@@ -1,10 +1,12 @@
 export const NEW_TAB = 'NEW_TAB';
 export const CLOSE_TAB = 'CLOSE_TAB';
+export const SELECT_TAB = 'SELECT_TAB';
 
 export default {
-  newTab(tabListID) {
+  newTab(paneID, tabListID) {
     return {
       type: NEW_TAB,
+      paneID,
       tabListID
     };
   },
@@ -13,6 +15,14 @@ export default {
     return {
       type: CLOSE_TAB,
       tabListID,
+      tabID
+    };
+  },
+
+  selectTab(paneID, tabID) {
+    return {
+      type: SELECT_TAB,
+      paneID,
       tabID
     };
   }

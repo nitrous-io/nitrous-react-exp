@@ -9,18 +9,23 @@ function mapStateToProps(state, ownProps) {
   return {
     tabs: tabList ? OrderedMap(tabList.map((id) => (
       [id, state.getIn(['tabs', id])]
-    ))): null
+    ))): null,
+    selectedTabID: state.getIn(['panes', ownProps.paneID, 'selectedTabID'])
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     onClickNewTab() {
-      dispatch(tabActions.newTab(ownProps.tabListID));
+      dispatch(tabActions.newTab(ownProps.paneID, ownProps.tabListID));
     },
 
     onClickCloseTab(tabID) {
       dispatch(tabActions.closeTab(ownProps.tabListID, tabID));
+    },
+
+    onClickTab(tabID) {
+      dispatch(tabActions.selectTab(ownProps.paneID, tabID));
     }
   };
 }

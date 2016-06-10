@@ -7,11 +7,12 @@ export function nextPaneID() {
 }
 
 const Pane = Record({
-  tabListID: null,
   parentID: null,
   leftChildID: null,
   rightChildID: null,
-  vertical: false
+  vertical: false,
+  tabListID: null,
+  selectedTabID: null
 });
 
 export default Pane;

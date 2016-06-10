@@ -42,6 +42,10 @@ function splitPane(state, action) {
   const {paneID} = action,
         pane = state.getIn(['panes', paneID]);
 
+  if (!pane) {
+    return state;
+  }
+
   // if pane is already split, do nothing
   if (pane.leftChildID || pane.rightChildID) {
     return state;
@@ -54,19 +58,22 @@ function splitPane(state, action) {
 
   const leftChildID = nextPaneID(),
         rightChildID = nextPaneID(),
-        leftChild = new Pane({parentID: paneID, tabListID: pane.tabListID}),
+        leftChild = pane.merge({parentID: paneID}),
         rightChild = new Pane({parentID: paneID, tabListID: newTabListID});
 
   state = state.mergeIn(['panes'], {
     [leftChildID]: leftChild,
     [rightChildID]: rightChild,
-    [paneID]: pane.merge({
-      tabListID: null,
+    [paneID]: new Pane({
+      parentID: pane.parentID,
       leftChildID,
       rightChildID,
-      vertical: action.type === SPLIT_VERTICALLY
+      vertical: action.type === SPLIT_VERTICALLY,
+      tabListID: null,
+      selectedTabID: null
     })
   });
+
   // move tabs to left child
   return moveTabs(state, paneID, leftChildID);
 }
@@ -74,6 +81,10 @@ function splitPane(state, action) {
 function unsplitPane(state, action) {
   const {paneID} = action,
         pane = state.getIn(['panes', paneID]);
+
+  if (!pane) {
+    return state;
+  }
 
   const {parentID} = pane;
   let parent = state.getIn(['panes', parentID]);

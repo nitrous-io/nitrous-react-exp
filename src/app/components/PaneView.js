@@ -7,6 +7,7 @@ import PaneContainer from '../containers/PaneContainer';
 import classNames from 'classnames';
 
 function PaneView({
+  paneID,
   pane,
   onClickSplitHorizontally,
   onClickSplitVertically,
@@ -23,7 +24,7 @@ function PaneView({
       {!pane.leftChildID && !pane.rightChildID ? (
         <div>
           {pane.tabListID ? (
-            <TabBarContainer tabListID={pane.tabListID} />
+            <TabBarContainer tabListID={pane.tabListID} paneID={paneID} />
           ) : ''}
           <ButtonToolbar>
             <Button onClick={onClickSplitHorizontally}>Split Horizontally</Button>
@@ -37,6 +38,7 @@ function PaneView({
 }
 
 PaneView.propTypes = {
+  paneID: PropTypes.string.isRequired,
   pane: PropTypes.instanceOf(Pane).isRequired,
   onClickSplitHorizontally: PropTypes.func.isRequired,
   onClickSplitVertically: PropTypes.func.isRequired,
