@@ -1,6 +1,13 @@
-.MainMenu
-  border-bottom: 1px solid black
-  flex-shrink: 0
+@import './colors'
+@import './bs'
 
-  > .navbar
-    margin: 0
+.MainMenu
+  flex-shrink: 0
+  user-select: none
+  font-size: 13px
+
+  > .navbar.navbar-default
+    border: none
+
+    .navbar-brand
+      font-size: $font-size-base

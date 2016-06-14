@@ -1,6 +1,6 @@
 import './PaneView.sass';
 import React, {PropTypes} from 'react';
-import {Button, ButtonToolbar} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import TabBarContainer from '../containers/TabBarContainer';
 import Pane from '../records/Pane';
 import PaneContainer from '../containers/PaneContainer';
@@ -13,24 +13,36 @@ function PaneView({
   onClickSplitVertically,
   onClickUnsplit
 }) {
+  const leaf = !pane.leftChildID && !pane.rightChildID;
+
   return (
-    <div className={classNames('PaneView', { vertical: pane.vertical })}>
+    <div className={classNames('PaneView', { vertical: pane.vertical, leaf })}>
       {pane.leftChildID ? (
         <PaneContainer paneID={pane.leftChildID} />
       ) : ''}
       {pane.rightChildID ? (
         <PaneContainer paneID={pane.rightChildID} />
       ) : ''}
-      {!pane.leftChildID && !pane.rightChildID ? (
-        <div>
-          {pane.tabListID ? (
-            <TabBarContainer tabListID={pane.tabListID} paneID={paneID} />
-          ) : ''}
-          <ButtonToolbar>
-            <Button onClick={onClickSplitHorizontally}>Split Horizontally</Button>
-            <Button onClick={onClickSplitVertically}>Split Vertically</Button>
-            <Button onClick={onClickUnsplit}>Unsplit</Button>
-          </ButtonToolbar>
+      {leaf ? (
+        <div className='pane-body'>
+          <header>
+            {pane.tabListID ? (
+              <TabBarContainer tabListID={pane.tabListID} paneID={paneID} />
+            ) : ''}
+            <div className='pane-controls'>
+              <Button bsStyle='link' onClick={onClickSplitHorizontally} title='Split Horizontally'>
+                <i className='fa fa-columns' />
+              </Button>
+              <Button bsStyle='link' onClick={onClickSplitVertically} title='Split Vertically'>
+                <i className='fa fa-columns fa-rotate-270' />
+              </Button>
+              {pane.parentID ? (
+                <Button bsStyle='link' onClick={onClickUnsplit} title='Unsplit'>
+                  <i className='fa fa-times' />
+                </Button>
+              ) : ''}
+            </div>
+          </header>
         </div>
       ) : ''}
     </div>

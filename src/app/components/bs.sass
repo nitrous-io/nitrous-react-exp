@@ -1,0 +1,60 @@
+@import './colors'
+
+$body-bg: $base000
+$gray-base: $base06
+$gray-darker: $base05
+$gray-dark: $base04
+$gray: $base03
+$gray-light: $base02
+$gray-lighter: $base01
+$text-color: $gray-dark
+
+$brand-primary: $base0d
+$brand-success: $base0b
+$brand-info: $base0a
+$brand-warning: $base09
+$brand-danger: $base08
+
+$link-color: $base0d
+$link-hover-color: lighten($base0d, 5%)
+
+$font-size-base: 13px
+
+$navbar-height: 28px
+$navbar-padding-vertical: 5px
+$navbar-margin-bottom: 0
+$navbar-default-bg: transparent
+$navbar-default-border: transparent
+$navbar-default-brand-color: $base06
+$navbar-default-brand-hover-color: $base07
+$navbar-default-brand-hover-bg: transparent
+$navbar-default-link-color: $base04
+$navbar-default-link-hover-color: $base05
+$navbar-default-link-hover-bg: transparent
+$navbar-default-link-active-bg: $base02
+$navbar-default-link-active-color: $base07
+
+$dropdown-bg: $base01
+$dropdown-link-active-bg: $base02
+$dropdown-link-active-color: $base07
+$dropdown-link-hover-bg: $base02
+$dropdown-link-hover-color: $base07
+$dropdown-divider-bg: $base00
+
+$nav-link-padding: 5px 12px
+$nav-link-hover-bg: $base02
+
+html
+  background: $body-bg
+
+body
+  margin: 0
+
+.btn
+  &, &:active, &.active
+    &:focus, &.focus
+      outline: 0
+
+.dropdown-menu
+  border: none
+  box-shadow: 0 6px 12px rgba(0,0,0,.175), 0 0 1px rgba(0,0,0,.15)

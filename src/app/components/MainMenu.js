@@ -5,7 +5,7 @@ import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 function MainMenu() {
   return (
     <div className='MainMenu'>
-      <Navbar fluid={true}>
+      <Navbar fluid={true} staticTop={true}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#">Nitrous</a>

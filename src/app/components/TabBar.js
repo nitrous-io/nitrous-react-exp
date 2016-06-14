@@ -28,13 +28,15 @@ function TabBar({
         {tabs ? tabs.map((tab, id) => (
           <li key={`tab-${id}`} className={classNames({selected: selectedTabID === id})} onClick={selectTab(id)}>
             {tab.title}
-            <Button bsStyle='link' onClick={closeTab(id)}>
+            <Button bsStyle='link' onClick={closeTab(id)} title='Close Tab'>
               <i className='fa fa-times' />
             </Button>
           </li>
         )).toList() : ''}
       </ul>
-      <Button onClick={onClickNewTab}>New Tab</Button>
+      <Button bsStyle='link' onClick={onClickNewTab} title='New Tab'>
+        <i className='fa fa-plus' />
+      </Button>
     </div>
   );
 }

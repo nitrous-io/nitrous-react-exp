@@ -1,8 +1,30 @@
+@import './colors'
+
 .PaneView
   display: flex
-  border: 1px solid blue
   flex: 1 0
   flex-direction: row
 
   &.vertical
     flex-direction: column
+
+  .pane-controls
+    display: inline-block
+
+  > .pane-body
+    width: 100%
+
+    > header
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+
+      > .TabBar
+        display: inline
+
+      > .pane-controls
+        flex-shrink: 0
+
+        .fa
+          font-size: 14px
+          color: $base04
