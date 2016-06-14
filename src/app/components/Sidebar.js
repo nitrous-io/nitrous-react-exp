@@ -1,4 +1,4 @@
-import './Sidebar.sass';
+import '../css/Sidebar.sass';
 import React from 'react';
 import FileTree from './FileTree';
 

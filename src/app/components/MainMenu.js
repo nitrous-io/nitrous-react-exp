@@ -1,4 +1,4 @@
-import './MainMenu.sass';
+import '../css/MainMenu.sass';
 import React from 'react';
 import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 

@@ -1,4 +1,4 @@
-import './PaneView.sass';
+import '../css/PaneView.sass';
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
 import TabBarContainer from '../containers/TabBarContainer';

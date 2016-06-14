@@ -1,4 +1,4 @@
-import './TabBar.sass';
+import '../css/TabBar.sass';
 import React, {PropTypes} from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';

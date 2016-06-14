@@ -1,4 +1,4 @@
-import './NitrousIDE.sass';
+import '../css/NitrousIDE.sass';
 import React from 'react';
 import MainMenu from './MainMenu';
 import Sidebar from './Sidebar';

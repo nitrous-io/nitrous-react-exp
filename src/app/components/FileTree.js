@@ -1,4 +1,4 @@
-import './FileTree.sass';
+import '../css/FileTree.sass';
 import React, {PropTypes} from 'react';
 import FileTreeNodeContainer from '../containers/FileTreeNodeContainer';
 

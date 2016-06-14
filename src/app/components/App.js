@@ -1,4 +1,4 @@
-import './App.sass';
+import '../css/App.sass';
 import React from 'react';
 import {Provider} from 'react-redux';
 import NitrousIDE from './NitrousIDE';
