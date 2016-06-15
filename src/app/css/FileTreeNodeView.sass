@@ -25,14 +25,18 @@
     left: 0
     cursor: pointer
 
-    &:hover:before
-      position: absolute
-      display: block
-      content: ''
-      width: 100%
-      height: $barHeight
-      background-color: $base01
-      z-index: -1
+    &:hover
+      &:before
+        position: absolute
+        display: block
+        content: ''
+        width: 100%
+        height: $barHeight
+        background-color: $base02
+        z-index: -1
+
+      & + .name
+        color: $base07
 
   .icon
     margin-right: 5px

@@ -1,4 +1,5 @@
 @import './colors'
+@import './bs'
 
 .PaneView
   display: flex
@@ -8,6 +9,10 @@
 
   &.vertical
     flex-direction: column
+
+  &.leaf
+    border-left: 1px solid black
+    border-bottom: 1px solid black
 
   .pane-controls
     display: inline-block
