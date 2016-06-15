@@ -21,6 +21,7 @@
   "homepage": "https://github.com/nitrous-io/nitrous#readme",
   "dependencies": {
     "classnames": "^2.2.5",
+    "codemirror": "^5.15.2",
     "immutable": "^3.8.1",
     "jquery": "^2.2.3",
     "react": "^15.0.2",

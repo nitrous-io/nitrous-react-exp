@@ -2,6 +2,7 @@ import '../css/PaneView.sass';
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
 import TabBarContainer from '../containers/TabBarContainer';
+import TabContentsContainer from '../containers/TabContentsContainer';
 import Pane from '../records/Pane';
 import PaneContainer from '../containers/PaneContainer';
 import classNames from 'classnames';
@@ -43,6 +44,7 @@ function PaneView({
               ) : ''}
             </div>
           </header>
+          <TabContentsContainer tabListID={pane.tabListID} paneID={paneID} />
         </div>
       ) : ''}
     </div>

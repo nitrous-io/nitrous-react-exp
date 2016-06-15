@@ -1,0 +1,15 @@
+.TabContents
+  display: flex
+  flex-direction: row
+  min-height: 0
+
+  > .tab-content
+    display: none
+    width: 100%
+    flex: 1 1 auto
+
+    &.active
+      display: block
+
+    > .CodeMirrorView
+      height: 100%
