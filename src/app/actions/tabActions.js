@@ -1,6 +1,7 @@
 export const NEW_TAB = 'NEW_TAB';
 export const CLOSE_TAB = 'CLOSE_TAB';
 export const SELECT_TAB = 'SELECT_TAB';
+export const UPDATE_CONTENT = 'UPDATE_CONTENT';
 
 export default {
   newTab(paneID, tabListID) {
@@ -25,6 +26,14 @@ export default {
       type: SELECT_TAB,
       paneID,
       tabID
+    };
+  },
+
+  updateContent(tabID, content) {
+    return {
+      type: UPDATE_CONTENT,
+      tabID,
+      content
     };
   }
 };

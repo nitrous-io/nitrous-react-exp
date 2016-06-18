@@ -9,10 +9,7 @@ export function nextFileID() {
 class File extends Record({
   name: null,
   parentID: null,
-  childIDs: null,
-
-  type: null,
-  content: null
+  childIDs: null
 }) {
   get isDir() {
     return this.childIDs != null;

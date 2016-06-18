@@ -1,5 +1,5 @@
 import {nextTabID, createTab} from '../records/Tab';
-import {NEW_TAB, CLOSE_TAB, SELECT_TAB} from '../actions/tabActions';
+import {NEW_TAB, CLOSE_TAB, SELECT_TAB, UPDATE_CONTENT} from '../actions/tabActions';
 
 function newTab(state, paneID, tabListID) {
   const pane = state.getIn(['panes', paneID]),
@@ -85,6 +85,18 @@ function selectTab(state, paneID, tabID) {
   });
 }
 
+function updateContent(state, tabID, content) {
+  const tab = state.getIn(['tabs', tabID]);
+
+  if (!tab) {
+    return state;
+  }
+
+  return state.mergeIn(['tabs'], {
+    [tabID]: tab.set('content', content)
+  });
+}
+
 function tabs(state={}, action) {
   switch (action.type) {
     case NEW_TAB:
@@ -95,6 +107,9 @@ function tabs(state={}, action) {
 
     case SELECT_TAB:
       return selectTab(state, action.paneID, action.tabID);
+
+    case UPDATE_CONTENT:
+      return updateContent(state, action.tabID, action.content);
 
     default:
       return state;

@@ -12,7 +12,9 @@ export function createTab() {
 }
 
 const Tab = Record({
-  title: null
+  title: null,
+  type: 'text',
+  content: null
 });
 
 

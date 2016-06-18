@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import Tab from '../records/Tab';
-import CodeMirrorView from './CodeMirrorView';
+import EditorContainer from '../containers/EditorContainer';
 
 function TabContents({
   tabs,
@@ -13,7 +13,9 @@ function TabContents({
     <div className='TabContents'>
       {tabs ? tabs.map((tab, id) => (
         <div key={`tab-content-${id}`} className={classNames('tab-content', {active: selectedTabID === id })}>
-          <CodeMirrorView />
+          {tab.type === 'text' ? (
+            <EditorContainer tabID={id} />
+          ) : ''}
         </div>
       )).toList() : ''}
     </div>
