@@ -31,14 +31,14 @@ function PaneView({
               <TabBarContainer tabListID={pane.tabListID} paneID={paneID} />
             ) : ''}
             <div className='pane-controls'>
-              <Button bsStyle='link' onClick={onClickSplitHorizontally} title='Split Horizontally'>
+              <Button className='panel-btn' bsStyle='link' onClick={onClickSplitHorizontally} title='Split Horizontally'>
                 <i className='fa fa-columns' />
               </Button>
-              <Button bsStyle='link' onClick={onClickSplitVertically} title='Split Vertically'>
+              <Button className='panel-btn' bsStyle='link' onClick={onClickSplitVertically} title='Split Vertically'>
                 <i className='fa fa-columns fa-rotate-270' />
               </Button>
               {pane.parentID ? (
-                <Button bsStyle='link' onClick={onClickUnsplit} title='Unsplit'>
+                <Button className='panel-btn' bsStyle='link' onClick={onClickUnsplit} title='Unsplit'>
                   <i className='fa fa-times' />
                 </Button>
               ) : ''}

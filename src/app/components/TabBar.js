@@ -34,7 +34,7 @@ function TabBar({
           </li>
         )).toList() : ''}
       </ul>
-      <Button bsStyle='link' onClick={onClickNewTab} title='New Tab'>
+      <Button className='panel-btn' bsStyle='link' onClick={onClickNewTab} title='New Tab'>
         <i className='fa fa-plus' />
       </Button>
     </div>

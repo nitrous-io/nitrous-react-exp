@@ -1,0 +1,17 @@
+@import './colors'
+
+html
+  background: $main-bg
+
+body
+  margin: 0
+  color: $main-fg
+
+.btn
+  &, &:active, &.active
+    &:focus, &.focus
+      outline: 0
+
+.dropdown-menu
+  border: 1px solid $panel-border
+  box-shadow: 0 6px 12px rgba(0,0,0,.175)

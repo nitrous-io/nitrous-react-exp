@@ -11,8 +11,8 @@
     flex-direction: column
 
   &.leaf
-    border-left: 1px solid black
-    border-bottom: 1px solid black
+    border-left: 1px solid $panel-border
+    border-bottom: 1px solid $panel-border
 
   .pane-controls
     display: inline-block
@@ -27,6 +27,9 @@
       flex-direction: row
       justify-content: space-between
       flex: 0 0 auto
+      border-bottom: 1px solid $panel-border
+      background: $panel-bg
+      color: $panel-fg
 
       > .TabBar
         display: inline
@@ -34,9 +37,19 @@
       > .pane-controls
         flex: 0 0 auto
 
-        .fa
+      .btn
+        padding: 0 12px
+        line-height: 27px
+
+        > .fa
           font-size: 14px
-          color: $base04
+
+      .panel-btn
+        color: $panel-fg
+
+        &:hover
+          background-color: $panel-light-hilite-bg
+          color: $panel-light-hilite-fg
 
     > .TabContents
       flex: 1 1 auto
